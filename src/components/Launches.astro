@@ -1,7 +1,21 @@
 ---
-const res = await fetch("https://api.spacexdata.com/v5/launches");
-const data = await res.json();
-
+import type { APISpaceXResponse } from "../types/api";
+const res = await fetch("https://api.spacexdata.com/v5/launches/query", {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json",
+  },
+  body: JSON.stringify({
+    query: {},
+    options: {
+      sort: {
+        date_unix: "asc",
+      },
+      limit: 12,
+    },
+  }),
+});
+const data = (await res.json()) as APISpaceXResponse;
 console.log(data);
 ---
 
