@@ -4,9 +4,10 @@ export const getLaunchById = async ({ id }: { id: string }) => {
   const res = await fetch(`https://api.spacexdata.com/v5/launches/${id}`);
 
   const launch = (await res.json()) as Doc;
+  return launch;
 };
 
-export const getLastesLaunches = async () => {
+export const getLastestLaunches = async () => {
   const res = await fetch("https://api.spacexdata.com/v5/launches/query", {
     method: "POST",
     headers: {
